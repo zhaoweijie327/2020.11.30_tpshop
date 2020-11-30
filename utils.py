@@ -1,6 +1,10 @@
 import json
+import time
 
+import allure
 from selenium import webdriver
+
+from config import BAS_URL
 
 '''
 获取webdriver对象
@@ -36,6 +40,16 @@ class DriverUtils:
         if cls.__driver is not None and cls.__key is True:
             cls.open_driver().quit()
             cls.__driver = None
+
+    @classmethod
+    def screen_image(cls,name="截图"):
+        # 截图到报告
+        png_name = BAS_URL + '/image/tp_shop_{}.png'.format(int(time.time()*10000))
+
+        cls.open_driver().get_screenshot_as_file(png_name)
+
+        with open(png_name,"rb") as file:
+            allure.attach(file.read(),name,attachment_type=allure.attachment_type.PNG)
 
 # json数据驱动
 def data_path(data_url,data_values):
