@@ -1,9 +1,8 @@
 import logging
 
 import pytest
-from selenium.common.exceptions import NoSuchElementException
 
-from base.page import Page
+from base.tpshop.page import Page
 from config import BAS_URL
 from utils import DriverUtils, data_path
 

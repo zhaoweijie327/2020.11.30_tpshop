@@ -1,7 +1,6 @@
 import logging
 import pytest
-from selenium.common.exceptions import NoSuchElementException
-from base.page import Page
+from base.tpshop.page import Page
 from config import BAS_URL
 from utils import DriverUtils, data_path
 
@@ -23,7 +22,8 @@ class Test_Myorder:
             suc = Page.get_myorder_page().myorder_pay()
             # 断言
             if suc == msg:
-                logging.info("------------------->支付成功")
+                print("支付成功")
+            logging.info("------------------->支付成功")
         except Exception:
             print("支付失败")
             # 错误截图

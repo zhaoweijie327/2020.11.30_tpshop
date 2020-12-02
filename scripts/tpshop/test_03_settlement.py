@@ -1,8 +1,7 @@
 import logging
 
 import pytest
-from selenium.common.exceptions import NoSuchElementException
-from base.page import Page
+from base.tpshop.page import Page
 from config import BAS_URL
 from utils import DriverUtils, data_path
 
@@ -25,7 +24,8 @@ class Test_Settlement:
             message = Page.get_addcart_page().addcart_settlement()
             # 断言
             if message == msg:
-                logging.info("------------------->提交成功")
+                print("提交成功")
+            logging.info("------------------->提交成功")
         except Exception:
             # 错误截图
             DriverUtils().screen_image()
