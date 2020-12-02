@@ -3,11 +3,10 @@
 '''
 import time
 from base.base_driver import DriverBase, DriverHandles
-from page.find_element import Find_Element
+from page.tpshop.find_element import Find_Element
 
 # 添加购物车/立即购买
 # 对象层
-from utils import DriverUtils
 
 
 class ProductPage(DriverBase):

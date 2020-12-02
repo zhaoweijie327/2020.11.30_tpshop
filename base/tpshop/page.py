@@ -1,8 +1,8 @@
-from page.addcart_page import AddcartBuissens
-from page.home_page import HomeBuissens
-from page.login_page import LoginBuissens
-from page.myorder_page import MyorderBuissens
-from page.product_page import ProductBuissens
+from page.tpshop.addcart_page import AddcartBuissens
+from page.tpshop.home_page import HomeBuissens
+from page.tpshop.login_page import LoginBuissens
+from page.tpshop.myorder_page import MyorderBuissens
+from page.tpshop.product_page import ProductBuissens
 
 
 class Page:

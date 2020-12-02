@@ -1,9 +1,7 @@
 import time
 from base.base_driver import DriverBase, DriverHandles
-from page.find_element import Find_Element
+from page.tpshop.find_element import Find_Element
 
-
-from utils import DriverUtils
 
 # 购物车点击结算，提交订单
 # 对象层

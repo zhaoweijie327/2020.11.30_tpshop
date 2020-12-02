@@ -3,8 +3,8 @@
 '''
 import time
 from base.base_driver import DriverBase, DriverHandles
-from page.find_element import Find_Element
-from utils import DriverUtils
+from page.tpshop.find_element import Find_Element
+
 
 # 支付
 # 对象层
