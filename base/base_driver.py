@@ -19,7 +19,7 @@ class DriverBase:
     def find_elements(self,loc):
         return self.driver.find_elements(*loc)
 
-class BaseHandles:
+class DriverHandles:
 
     # 输入方法
     def input_senk(self,element,text):
@@ -45,7 +45,7 @@ class BaseHandles:
 
     # 滚动条
     def input_gundongtiao(self,driver):
-        js = "window.scrollTo(0,10000)"
+        js = "window.scrollTo(0,3000)"
         driver.execute_script(js)
 
     # 页面切换

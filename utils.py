@@ -23,10 +23,10 @@ class DriverUtils:
         if cls.__driver is None:
             # 打开webdriver驱动
             cls.__driver = webdriver.Chrome()
-            # 隐式等待
-            cls.__driver.implicitly_wait(10)
             # 打开窗口最大化
             cls.__driver.maximize_window()
+            # 隐式等待
+            cls.__driver.implicitly_wait(10)
         return cls.__driver
 
     @classmethod
