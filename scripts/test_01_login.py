@@ -1,8 +1,12 @@
+import logging
+
 import pytest
 from selenium.common.exceptions import NoSuchElementException
 
 from base.page import Page
-from utils import DriverUtils
+from config import BAS_URL
+from utils import DriverUtils, data_path
+
 
 @pytest.mark.run(order=2)
 class Test_Login:
@@ -13,28 +17,19 @@ class Test_Login:
     def teardown_class(self):
         DriverUtils.close_driver()
 
-    def test_01_login(self):
-        # 用户名
-        username = "13702449143"
-        # 密码
-        pwd = "kg83200477"
-        # 验证码
-        code = "8888"
-        # 修改用户名
-        nick_name = "招伟杰"
-        # 获取欢迎登陆文本信息
-        welcome = "欢迎登录"
+    @pytest.mark.parametrize("username,pwd,code,nick_name,msg",data_path(BAS_URL + '/data/tpshop.json','login'))
+    def test_01_login(self,username,pwd,code,nick_name,msg):
         # 首页点击登陆跳转登陆页面
-        msg = Page.get_home_page().home_login()
+        message = Page.get_home_page().home_login()
         try:
-            if msg == welcome:
-                # 登陆页面登陆操作
-                Page.get_login_page().login_login(username,pwd,code,nick_name)
-                print("登陆并修改用户名成功")
-            else:
-                print("登陆不成功，请查看页面是否有问题")
-        except:
+            # 断言
+            assert message == msg
+            Page.get_login_page().login_login(username,pwd,code,nick_name)
+            # 存入日志
+            logging.info("用户名：%s....密码：%s...验证码：%s...修改用户名：%s" %(username,pwd,code,nick_name))
+            logging.info("---------------->登陆并修改用户名成功")
+        except Exception:
+            print("登陆不成功，请查看页面是否有问题")
             # 错误截图
             DriverUtils().screen_image()
-            ex = NoSuchElementException
-            raise ex
+            raise

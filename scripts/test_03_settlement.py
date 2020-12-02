@@ -1,8 +1,11 @@
+import logging
+
 import pytest
 from selenium.common.exceptions import NoSuchElementException
-
 from base.page import Page
-from utils import DriverUtils
+from config import BAS_URL
+from utils import DriverUtils, data_path
+
 
 @pytest.mark.run(order=4)
 class Test_Settlement:
@@ -13,17 +16,17 @@ class Test_Settlement:
     def teardown_class(self):
         DriverUtils.close_driver()
 
-    def test_03_settlement(self):
-        success = "订单提交成功，请您尽快付款！"
+    @pytest.mark.parametrize("msg", data_path(BAS_URL + '/data/tpshop.json', 'settlement'))
+    def test_03_settlement(self,msg):
         try:
             # 点击首页的购物车显示并点击进入购物车结算
             Page.get_home_page().home_cart()
             # 进入购物车页面进行结算并提交
-            suc = Page.get_addcart_page().addcart_settlement()
-            if suc == success:
-                print('提交成功')
-        except:
+            message = Page.get_addcart_page().addcart_settlement()
+            # 断言
+            if message == msg:
+                logging.info("------------------->提交成功")
+        except Exception:
             # 错误截图
             DriverUtils().screen_image()
-            ex = NoSuchElementException
-            raise ex
+            raise
