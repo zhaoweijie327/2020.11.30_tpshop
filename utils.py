@@ -3,8 +3,10 @@ import time
 
 import allure
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 
 from config import BAS_URL
+from page.mp.mp_find_element import Mp_Find_Element
 
 '''
 获取webdriver对象
@@ -50,6 +52,20 @@ class DriverUtils:
 
         with open(png_name,"rb") as file:
             allure.attach(file.read(),name,attachment_type=allure.attachment_type.PNG)
+
+# 确定元素是否存在
+def is_exists_element(text):
+    # 获取需要断言的元素
+    xpath = Mp_Find_Element.xpath.format(text)
+    try:
+        is_suc = DriverUtils.open_driver().find_element_by_xpath(xpath)
+    except Exception as e :
+        # 如没有找到该元素，则将False赋值给is_suc
+        is_suc = False
+        # 同时抛出找不到元素的异常
+        NoSuchElementException("no find text is {} element".format(text))
+    # 返回
+    return is_suc
 
 # json数据驱动
 def data_path(data_url,data_values):

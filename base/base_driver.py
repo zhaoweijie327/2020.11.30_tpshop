@@ -1,8 +1,11 @@
 '''
 封装driver基类
 '''
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
 
+from page.mp.mp_find_element import Mp_Find_Element
 from utils import DriverUtils
 
 
@@ -60,3 +63,29 @@ class DriverHandles:
     def input_actions(self,driver,element):
         ActionChains(driver).move_to_element(element).perform()
 
+    # 公用控件操作
+    def select_option(self,driver,channel_name,option_name):
+        # 获取控件元素
+        xpath_text = "[placeholder*='{}']".format(channel_name)
+        css_string = driver.find_element_by_css_selector(xpath_text)
+        # 点击频道
+        self.input_click(css_string)
+        # 获取拼到里面的元素
+        option_list = driver.find_elements_by_css_selector(Mp_Find_Element.article_kongjian)
+        # 是否找到标识符
+        is_element = False
+        # 遍历寻找正确文本
+        for option_element in option_list:
+            # 如果相同就点击事件
+            if self.input_text(option_element) == option_name:
+                self.input_click(option_element)
+                is_element = True
+                break
+            # 如果不相等则鼠标悬浮到该项并且向下按键
+            else:
+                ActionChains(driver).move_to_element(option_element).send_keys(Keys.DOWN).perform()
+                is_element = False
+
+        # 找不到元素抛出异常
+        if is_element is False:
+            NoSuchElementException("can't find {} option".format(option_name))
