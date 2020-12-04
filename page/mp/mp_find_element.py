@@ -4,7 +4,8 @@ from selenium.webdriver.common.by import By
 class Mp_Find_Element:
 
     xpath = "//*[contains(text(),'{}')]"
-
+    # 控件里面的元素
+    article_kongjian = ".el-select-dropdown__item span"
     # ...............登陆.......................
     # 用户名
     login_username = (By.CSS_SELECTOR,"[placeholder='请输入手机号']")
@@ -28,7 +29,5 @@ class Mp_Find_Element:
     article_choose_picture = (By.CSS_SELECTOR,".title")
     # 点击图片
     article_picture = (By.CSS_SELECTOR,".img_list img")
-    # 控件里面的元素
-    article_kongjian = ".el-select-dropdown__item span"
     # 点击确定
     article_ascertain = (By.XPATH,"//*[text()='确 定']")

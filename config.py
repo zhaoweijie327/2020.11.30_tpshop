@@ -10,6 +10,8 @@ import time
 
 BAS_URL = os.path.abspath(os.path.dirname(__file__))
 
+TITLE = None
+
 # 日志
 def log():
     # 创建日志器对象
