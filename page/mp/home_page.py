@@ -1,5 +1,6 @@
+#-*-coding:utf-8 -*-
 '''
-ÀûÓÃpoÄ£Ê½½«Ò³Ãæ·ÖÎªÈı²ã£¨¶ÔÏó¡¢²Ù×÷¡¢ÒµÎñ£©
+åˆ©ç”¨poæ¨¡å¼å°†é¡µé¢åˆ†ä¸ºä¸‰å±‚ï¼ˆå¯¹è±¡ã€æ“ä½œã€ä¸šåŠ¡ï¼‰
 '''
 import time
 
@@ -7,45 +8,45 @@ from base.base_driver import DriverBase, DriverHandles
 from page.mp.mp_find_element import Mp_Find_Element
 
 
-# ¶ÔÏó²ã
+# å¯¹è±¡å±‚
 class Mp_HomePage(DriverBase):
 
     def __init__(self):
         super().__init__()
 
-    # ¶¨Î»ÄÚÈİ¹ÜÀí
+    # å®šä½å†…å®¹ç®¡ç†
     def find_home_content(self):
         return self.find_elemnet(Mp_Find_Element.home_content)
 
-    # ¶¨Î»·¢²¼ÎÄÕÂ
+    # å®šä½å‘å¸ƒæ–‡ç« 
     def find_home_article(self):
         return self.find_elemnet(Mp_Find_Element.home_article)
 
-# ²Ù×÷²ã
+# æ“ä½œå±‚
 class Mp_HomeHandles(DriverHandles):
 
     def __init__(self):
         self.mp_page = Mp_HomePage()
 
-    # Ä£Äâµã»÷ÄÚÈİ¹ÜÀí²Ù×÷
+    # æ¨¡æ‹Ÿç‚¹å‡»å†…å®¹ç®¡ç†æ“ä½œ
     def input_home_content(self):
         self.input_click(self.mp_page.find_home_content())
 
-    # Ä£Äâµã»÷·¢²¼ÎÄÕÂ²Ù×÷
+    # æ¨¡æ‹Ÿç‚¹å‡»å‘å¸ƒæ–‡ç« æ“ä½œ
     def input_home_article(self):
         self.input_click(self.mp_page.find_home_article())
 
-# ÒµÎñ²ã
+# ä¸šåŠ¡å±‚
 class Mp_HomeBuissens:
 
     def __init__(self):
         self.mh_handles = Mp_HomeHandles()
 
-    # µã»÷ÄÚÈİ¹ÜÀí·¢²¼ÎÄÕÂ
+    # ç‚¹å‡»å†…å®¹ç®¡ç†å‘å¸ƒæ–‡ç« 
     def mp_home_ca(self):
-        # µã»÷ÄÚÈİ¹ÜÀí
+        # ç‚¹å‡»å†…å®¹ç®¡ç†
         self.mh_handles.input_home_content()
-        # µã»÷ÎÄÕÂ·¢²¼
-        self.mh_handles.input_home_content()
+        # ç‚¹å‡»æ–‡ç« å‘å¸ƒ
+        self.mh_handles.input_home_article()
         time.sleep(2)
 

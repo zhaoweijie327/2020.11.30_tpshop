@@ -1,3 +1,4 @@
+#-*-coding:utf-8 -*-
 from page.mp.home_page import Mp_HomeBuissens
 from page.mp.login_page import Mp_LoginBuissens
 from page.mp.pusair_page import Mp_PusairBuissens
@@ -8,7 +9,7 @@ class Page:
     @classmethod
     def get_login_page(cls):
         '''
-        登陆
+        鐧婚檰
         :return:
         '''
         return Mp_LoginBuissens()
@@ -16,7 +17,7 @@ class Page:
     @classmethod
     def get_home_page(cls):
         '''
-        内容管理
+        鍐呭绠＄悊
         :return:
         '''
         return Mp_HomeBuissens()
@@ -24,7 +25,7 @@ class Page:
     @classmethod
     def get_pusair_page(cls):
         '''
-        发布内容
+        鍙戝竷鍐呭
         :return:
         '''
         return Mp_PusairBuissens()

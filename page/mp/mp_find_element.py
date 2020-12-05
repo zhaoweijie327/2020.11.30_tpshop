@@ -1,33 +1,36 @@
+#-*-coding:utf-8 -*-
 from selenium.webdriver.common.by import By
 
 
 class Mp_Find_Element:
 
     xpath = "//*[contains(text(),'{}')]"
-    # ¿Ø¼şÀïÃæµÄÔªËØ
+    # æ§ä»¶é‡Œé¢çš„å…ƒç´ 
     article_kongjian = ".el-select-dropdown__item span"
-    # ...............µÇÂ½.......................
-    # ÓÃ»§Ãû
-    login_username = (By.CSS_SELECTOR,"[placeholder='ÇëÊäÈëÊÖ»úºÅ']")
-    # ÃÜÂë
-    login_code = (By.CSS_SELECTOR,"[placeholder='ÑéÖ¤Âë']")
-    # µÇÂ½
-    login_button = (By.XPATH,"//*[text()='µÇÂ¼']")
-    # ...............Ê×Ò³.......................
-    # ÄÚÈİ¹ÜÀí
-    home_content = (By.XPATH,"//*[text()='ÄÚÈİ¹ÜÀí']")
-    # ·¢²¼ÎÄÕÂ
-    home_article = (By.XPATH,"//*[contains(text(),'  ·¢²¼ÎÄÕÂ')]")
-    # ...............ÎÄÕÂÒ³.......................
-    # ÎÄÕÂ±êÌâ
-    article_title = (By.CSS_SELECTOR,"[placeholder='ÎÄÕÂÃû³Æ']")
-    # ½øÈëifram×ÓÒ³Ãæ
+    # ...............ç™»é™†.......................
+    # ç”¨æˆ·å
+    login_username = (By.CSS_SELECTOR,"[placeholder='è¯·è¾“å…¥æ‰‹æœºå·']")
+    # å¯†ç 
+    login_code = (By.CSS_SELECTOR,"[placeholder='éªŒè¯ç ']")
+    # ç™»é™†
+    login_button = (By.XPATH,"//*[text()='ç™»å½•']")
+    # ...............é¦–é¡µ.......................
+    # å†…å®¹ç®¡ç†
+    home_content = (By.XPATH,"//*[text()='å†…å®¹ç®¡ç†']")
+    # å‘å¸ƒæ–‡ç« 
+    home_article = (By.XPATH,"//*[contains(text(),'  å‘å¸ƒæ–‡ç« ')]")
+    # ...............æ–‡ç« é¡µ.......................
+    # æ–‡ç« æ ‡é¢˜
+    article_title = (By.CSS_SELECTOR,"[placeholder='æ–‡ç« åç§°']")
+    # è¿›å…¥iframå­é¡µé¢
     article_ifram = (By.CSS_SELECTOR,"#publishTinymce_ifr")
-    # ÊäÈëÎÄÕÂÄÚÈİ
-    article_content = (By.CSS_SELECTOR,"#tinymce br")
-    # µã»÷Ñ¡ÔñÍ¼Æ¬
+    # è¾“å…¥æ–‡ç« å†…å®¹
+    article_content = (By.CSS_SELECTOR,"body")
+    # ç‚¹å‡»é€‰æ‹©å›¾ç‰‡
     article_choose_picture = (By.CSS_SELECTOR,".title")
-    # µã»÷Í¼Æ¬
+    # ç‚¹å‡»å›¾ç‰‡
     article_picture = (By.CSS_SELECTOR,".img_list img")
-    # µã»÷È·¶¨
-    article_ascertain = (By.XPATH,"//*[text()='È· ¶¨']")
+    # ç‚¹å‡»ç¡®å®š
+    article_ascertain = (By.XPATH,"//*[text()='ç¡® å®š']")
+    # å‘è¡¨
+    article_fabiao = (By.XPATH,"//*[text()='å‘è¡¨']")

@@ -1,5 +1,6 @@
+#-*-coding:utf-8 -*-
 '''
-ÀûÓÃpoÄ£Ê½½«Ò³Ãæ·ÖÎªÈı²ã£¨¶ÔÏó¡¢²Ù×÷¡¢ÒµÎñ£©
+åˆ©ç”¨poæ¨¡å¼å°†é¡µé¢åˆ†ä¸ºä¸‰å±‚ï¼ˆå¯¹è±¡ã€æ“ä½œã€ä¸šåŠ¡ï¼‰
 '''
 import time
 
@@ -7,57 +8,57 @@ from base.base_driver import DriverBase, DriverHandles
 from page.mp.mp_find_element import Mp_Find_Element
 
 
-# ¶ÔÏó²ã
+# å¯¹è±¡å±‚
 class Mp_LoginPage(DriverBase):
 
     def __init__(self):
         super().__init__()
 
-    # ¶¨Î»ÓÃ»§ÃûÊäÈë¿ò
+    # å®šä½ç”¨æˆ·åè¾“å…¥æ¡†
     def find_login_username(self):
         return self.find_elemnet(Mp_Find_Element.login_username)
 
-    # ¶¨Î»ÑéÖ¤ÂëÊäÈë¿ò
+    # å®šä½éªŒè¯ç è¾“å…¥æ¡†
     def find_login_code(self):
         return self.find_elemnet(Mp_Find_Element.login_code)
 
-    # ¶¨Î»µÇÂ½°´Å¥
+    # å®šä½ç™»é™†æŒ‰é’®
     def find_login_button(self):
         return self.find_elemnet(Mp_Find_Element.login_button)
 
 
-# ²Ù×÷²ã
+# æ“ä½œå±‚
 class Mp_LoginHandles(DriverHandles):
 
     def __init__(self):
         self.ml_page = Mp_LoginPage()
 
-    # ÊäÈëÓÃ»§Ãû²Ù×÷
+    # è¾“å…¥ç”¨æˆ·åæ“ä½œ
     def input_login_username(self,username):
         self.input_senk(self.ml_page.find_login_username(),username)
 
-    # ÊäÈëÑéÖ¤Âë²Ù×÷
+    # è¾“å…¥éªŒè¯ç æ“ä½œ
     def input_login_code(self,code):
         self.input_senk(self.ml_page.find_login_code(), code)
 
-    # µã»÷µÇÂ½²Ù×÷
+    # ç‚¹å‡»ç™»é™†æ“ä½œ
     def input_login_button(self):
         self.input_click(self.ml_page.find_login_button())
 
 
-# ÒµÎñ²ã
+# ä¸šåŠ¡å±‚
 class Mp_LoginBuissens:
 
     def __init__(self):
         self.ml_handles = Mp_LoginHandles()
 
-    # µÇÂ½
+    # ç™»é™†
     def mp_login_login(self,username,code):
-        # ÊäÈëÓÃ»§Ãû
+        # è¾“å…¥ç”¨æˆ·å
         self.ml_handles.input_login_username(username)
-        # ÊäÈëÑéÖ¤Âë
+        # è¾“å…¥éªŒè¯ç 
         self.ml_handles.input_login_code(code)
-        # µã»÷µÇÂ½
+        # ç‚¹å‡»ç™»é™†
         self.ml_handles.input_login_button()
         time.sleep(2)
 

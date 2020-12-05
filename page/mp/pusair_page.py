@@ -1,5 +1,6 @@
+#-*-coding:utf-8 -*-
 '''
-ÀûÓÃpoÄ£Ê½½«Ò³Ãæ·ÖÎªÈı²ã£¨¶ÔÏó¡¢²Ù×÷¡¢ÒµÎñ£©
+åˆ©ç”¨poæ¨¡å¼å°†é¡µé¢åˆ†ä¸ºä¸‰å±‚ï¼ˆå¯¹è±¡ã€æ“ä½œã€ä¸šåŠ¡ï¼‰
 '''
 import time
 
@@ -7,80 +8,91 @@ from base.base_driver import DriverBase, DriverHandles
 from page.mp.mp_find_element import Mp_Find_Element
 
 
-# ¶ÔÏó²ã
+# å¯¹è±¡å±‚
 class Mp_PusairPage(DriverBase):
 
     def __init__(self):
         super().__init__()
 
-    # ¶¨Î»ÎÄÕÂ±êÌâ
+    # å®šä½æ–‡ç« æ ‡é¢˜
     def find_pusair_title(self):
         return self.find_elemnet(Mp_Find_Element.article_title)
 
-    # ¶¨Î»iframÒ³Ãæ
+    # å®šä½iframé¡µé¢
     def find_pusair_ifram(self):
         return self.find_elemnet(Mp_Find_Element.article_ifram)
 
-    # ¶¨Î»iframÒ³Ãæ
+    # å®šä½iframé¡µé¢
     def find_pusair_content(self):
         return self.find_elemnet(Mp_Find_Element.article_content)
 
-    # ¶¨Î»Ñ¡ÔñÍ¼Æ¬
+    # å®šä½é€‰æ‹©å›¾ç‰‡
     def find_pusair_choose_picture(self):
         return self.find_elemnet(Mp_Find_Element.article_choose_picture)
 
-    # ¶¨Î»Í¼Æ¬
+    # å®šä½å›¾ç‰‡
     def find_pusair_picture(self):
         return self.find_elemnet(Mp_Find_Element.article_picture)
 
-    # ¶¨Î»È·¶¨
+    # å®šä½ç¡®å®š
     def find_pusair_ascertain(self):
         return self.find_elemnet(Mp_Find_Element.article_ascertain)
 
-# ²Ù×÷²ã
+    # å®šä½å‘è¡¨
+    def find_pusair_fabiao(self):
+        return self.find_elemnet(Mp_Find_Element.article_fabiao)
+
+# æ“ä½œå±‚
 class Mp_PusairHandles(DriverHandles):
 
     def __init__(self):
         self.mpu_page = Mp_PusairPage()
 
-    # Ä£ÄâĞ´ÈëÎÄÕÂ±êÌâ
+    # æ¨¡æ‹Ÿå†™å…¥æ–‡ç« æ ‡é¢˜
     def input_pusair_title(self,title):
         self.input_senk(self.mpu_page.find_pusair_title(),title)
 
-    # Ä£ÄâĞ´ÈëÎÄÕÂÄÚÈİ
+    # æ¨¡æ‹Ÿå†™å…¥æ–‡ç« å†…å®¹
     def input_pusair_content(self,content):
-        # ½øÈë×ÓÒ³Ãæ
+        # è¿›å…¥å­é¡µé¢
         self.input_ifram(self.mpu_page.driver,self.mpu_page.find_pusair_ifram())
-        # Ğ´ÈëÄÚÈİ
+        # å†™å…¥å†…å®¹
         self.input_senk(self.mpu_page.find_pusair_content(),content)
-        # ÍË³ö×ÓÒ³Ãæ
+        # é€€å‡ºå­é¡µé¢
         self.mpu_page.driver.switch_to.default_content()
 
-    # Ä£Äâµã»÷Í¼Æ¬
+    # æ¨¡æ‹Ÿç‚¹å‡»å›¾ç‰‡
     def input_pusair_picture(self):
         self.input_click(self.mpu_page.find_pusair_choose_picture())
         self.input_click(self.mpu_page.find_pusair_picture())
 
-    # Ä£Äâµã»÷È·¶¨
+    # æ¨¡æ‹Ÿç‚¹å‡»ç¡®å®š
     def input_pusair_ascertain(self):
         self.input_click(self.mpu_page.find_pusair_ascertain())
 
-# ÒµÎñ²ã
+    # æ¨¡æ‹Ÿç‚¹å‡»å‘è¡¨
+    def input_pusair_fabiao(self):
+        self.input_click(self.mpu_page.find_pusair_fabiao())
+
+# ä¸šåŠ¡å±‚
 class Mp_PusairBuissens:
 
     def __init__(self):
         self.mpu_handles = Mp_PusairHandles()
 
-    # ÊäÈëÄÚÈİ·¢²¼ÎÄÕÂ
+    # è¾“å…¥å†…å®¹å‘å¸ƒæ–‡ç« 
     def mp_pusair_contant(self,title,content,driver,option_name):
-        # ÊäÈë±êÌâ
+        # è¾“å…¥æ ‡é¢˜
         self.mpu_handles.input_pusair_title(title)
-        # ÊäÈëÎÄÕÂÄÚÈİ
+        # è¾“å…¥æ–‡ç« å†…å®¹
         self.mpu_handles.input_pusair_content(content)
-        # µã»÷Í¼Æ¬
+        # ç‚¹å‡»å›¾ç‰‡
         self.mpu_handles.input_pusair_picture()
-        # µã»÷ÏÂÀ­ÁĞ±í¿Ø¼ş
-        self.mpu_handles.select_option(driver,'ÇëÑ¡Ôñ',option_name)
-        # µã»÷È·ÈÏ
+        # ç‚¹å‡»ç¡®è®¤
         self.mpu_handles.input_pusair_ascertain()
+        # ç‚¹å‡»ä¸‹æ‹‰åˆ—è¡¨æ§ä»¶
+        self.mpu_handles.select_option(driver,'è¯·é€‰æ‹©',option_name)
+        # ç‚¹å‡»å‘è¡¨
+        self.mpu_handles.input_pusair_fabiao()
+
         time.sleep(2)

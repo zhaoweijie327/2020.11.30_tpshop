@@ -1,5 +1,10 @@
+#-*-coding:utf-8 -*-
 import logging
+import time
+
 import pytest
+
+import config
 from base.mp.page import Page
 from config import BAS_URL
 from utils import DriverUtils, data_path, is_exists_element
@@ -8,23 +13,34 @@ from utils import DriverUtils, data_path, is_exists_element
 @pytest.mark.run(order=2)
 class Test_Mp_Login:
 
+    titles = time.strftime("%H%M%S")
+
     def setup_class(self):
-       DriverUtils.open_driver().get("http://ttmp.research.itcast.cn/#/login")
+       self.driver = DriverUtils.open_driver()
+       self.driver.get("http://ttmp.research.itcast.cn/")
 
     def teardown_class(self):
         DriverUtils.close_driver()
 
-    @pytest.mark.parametrize("username,code,message",data_path(BAS_URL + '/data/mp.json','login'))
-    def test_01_login(self,username,code,message):
+    @pytest.mark.parametrize("username,code,message,title,content,zhuanti",data_path(BAS_URL + '/data/mp.json','login'))
+    def test_01_login(self,username,code,message,title,content,zhuanti):
+        self.title_name = title + self.titles
         try:
-            # µÇÂ½
-            Page.get_login_page().mp_login_login(self.username,code)
-            # ¶ÏÑÔ
+            # ç™»é™†
+            Page.get_login_page().mp_login_login(username,code)
+            # æ–­è¨€
             is_exists_element(message)
-            # ´æÈëÈÕÖ¾
-            logging.info("---------------->µÇÂ½³É¹¦")
+            # å­˜å…¥æ—¥å¿—
+            logging.info("---------------->ç™»é™†æˆåŠŸ")
+            # ç‚¹å‡»å†…å®¹ç®¡ç†å’Œå‘å¸ƒæ–‡ç« 
+            Page.get_home_page().mp_home_ca()
+            # ç¡®è®¤å‘å¸ƒæ–‡ç« å†…å®¹
+            Page.get_pusair_page().mp_pusair_contant(self.title_name,content,self.driver,zhuanti)
+            logging.info("---------------->å‘å¸ƒæˆåŠŸ")
         except Exception:
-            print("µÇÂ½²»³É¹¦£¬Çë²é¿´Ò³ÃæÊÇ·ñÓĞÎÊÌâ")
-            # ´íÎó½ØÍ¼
+            print("æ“ä½œå¤±è´¥ï¼Œè¯·æŸ¥çœ‹é¡µé¢æ˜¯å¦æœ‰é—®é¢˜")
+            # é”™è¯¯æˆªå›¾
             DriverUtils().screen_image()
             raise
+        config.TITLE = self.title_name
+        print(config.TITLE)
