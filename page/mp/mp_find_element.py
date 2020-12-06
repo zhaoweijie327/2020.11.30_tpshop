@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 
 class Mp_Find_Element:
 
-    xpath = "//*[contains(text(),'{}')]"
     # 控件里面的元素
     article_kongjian = ".el-select-dropdown__item span"
     # ...............登陆.......................

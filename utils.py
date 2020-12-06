@@ -56,7 +56,7 @@ class DriverUtils:
 # 确定元素是否存在/断言
 def is_exists_element(text):
     # 获取需要断言的元素
-    xpath = Mp_Find_Element.xpath.format(text)
+    xpath = "//*[contains(text(),'{}')]".format(text)
     try:
         # 尝试查找该元素
         is_suc = DriverUtils.open_driver().find_element_by_xpath(xpath)

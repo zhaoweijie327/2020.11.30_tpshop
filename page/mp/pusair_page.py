@@ -91,7 +91,7 @@ class Mp_PusairBuissens:
         # 点击确认
         self.mpu_handles.input_pusair_ascertain()
         # 点击下拉列表控件
-        self.mpu_handles.select_option(driver,'请选择',option_name)
+        self.mpu_handles.select_option(driver,'请选择',Mp_Find_Element.article_kongjian,option_name)
         # 点击发表
         self.mpu_handles.input_pusair_fabiao()
 

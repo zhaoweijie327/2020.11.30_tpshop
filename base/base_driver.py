@@ -64,14 +64,14 @@ class DriverHandles:
         ActionChains(driver).move_to_element(element).perform()
 
     # 公用控件操作
-    def select_option(self,driver,channel_name,option_name):
+    def select_option(self,driver,channel_name,element,option_name):
         # 获取控件元素
         xpath_text = "[placeholder*='{}']".format(channel_name)
         css_string = driver.find_element_by_css_selector(xpath_text)
         # 点击频道
         self.input_click(css_string)
         # 获取拼到里面的元素
-        option_list = driver.find_elements_by_css_selector(Mp_Find_Element.article_kongjian)
+        option_list = driver.find_elements_by_css_selector(element)
         # 是否找到标识符
         is_element = False
         # 遍历寻找正确文本
